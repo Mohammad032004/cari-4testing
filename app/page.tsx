@@ -531,108 +531,198 @@ export default function Home() {
       ========================================================= */}
 
       <section
-        id="work"
-        className="relative z-10 border-b border-white/[0.06] py-28 sm:py-36"
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Selected work"
-            title="Ideas we've"
-            muted="turned into products."
-            description="A glimpse into the kind of digital products and systems CAIRN can design, engineer, automate, and scale."
+  id="work"
+  className="relative z-10 border-b border-white/[0.06] py-28 sm:py-36"
+>
+  <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeading
+      eyebrow="Selected work"
+      title="Built for the"
+      muted="real world."
+      description="We work across software, AI, automation, and product design to turn complex ideas into simple digital experiences."
+    />
+
+    <div className="mt-16 grid gap-6 lg:grid-cols-2">
+      {projects.map((project, index) => (
+        <motion.a
+          href={`/work/${project.slug}`}
+          key={project.slug}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            delay: index * 0.1,
+          }}
+          className={`group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#080808] ${
+            index === 0 ? "lg:col-span-2" : ""
+          }`}
+        >
+          {/* Background glow */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60 transition-opacity duration-700 group-hover:opacity-100`}
           />
 
-          <div className="mt-16 space-y-5">
-            {projects.map((project, index) => (
-              <motion.a
-                href="#contact"
-                key={project.title}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative grid overflow-hidden rounded-3xl border border-white/[0.08] bg-[#080808] lg:grid-cols-[1fr_1fr]"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60`}
-                />
+          <div
+            className={`relative grid ${
+              index === 0
+                ? "lg:grid-cols-[0.9fr_1.1fr]"
+                : "lg:grid-cols-1"
+            }`}
+          >
+            {/* Information */}
+            <div className="relative z-10 flex min-h-[380px] flex-col justify-between p-8 sm:p-10">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/35">
+                    {project.category}
+                  </span>
 
-                <div className="relative flex min-h-[350px] flex-col justify-between p-8 sm:p-10">
-                  <div>
-                    <span className="text-[10px] font-medium tracking-[0.25em] text-violet-300/70">
-                      {project.category}
-                    </span>
-
-                    <h3 className="mt-5 max-w-lg text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
-                      {project.title}
-                    </h3>
-
-                    <p className="mt-5 max-w-lg text-sm leading-7 text-white/40">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-8 flex flex-wrap gap-2">
-                    {project.tech.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-[10px] text-white/40"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                  <span className="font-mono text-[10px] text-white/20">
+                    {project.year}
+                  </span>
                 </div>
 
-                <div className="relative min-h-[350px] overflow-hidden border-t border-white/[0.06] lg:border-l lg:border-t-0">
-                  <div className="absolute inset-0 bg-[#060606]" />
+                <h3 className="mt-8 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                  {project.title}
+                </h3>
 
-                  <div className="absolute inset-8 rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition-transform duration-700 group-hover:scale-[1.025]">
-                    <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
-                      <div className="flex gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-white/20" />
-                        <span className="h-2 w-2 rounded-full bg-white/20" />
-                        <span className="h-2 w-2 rounded-full bg-white/20" />
+                <p className="mt-5 max-w-lg text-sm leading-7 text-white/40">
+                  {project.description}
+                </p>
+              </div>
+
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  {project.services.map((service) => (
+                    <span
+                      key={service}
+                      className="rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-[10px] text-white/40"
+                    >
+                      {service}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-7 flex items-center gap-2 text-sm text-white/50 transition-colors group-hover:text-white">
+                  View case study
+                  <ArrowUpRight
+                    size={16}
+                    className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Project Visual */}
+            <div className="relative min-h-[380px] overflow-hidden border-t border-white/[0.06] lg:border-l lg:border-t-0">
+              <div className="absolute inset-0 bg-[#060606]" />
+
+              {/* Browser */}
+              <motion.div
+                className="absolute left-[8%] right-[8%] top-[12%] overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] shadow-2xl"
+                whileHover={{
+                  y: -8,
+                  rotateX: 2,
+                  rotateY: -2,
+                }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Browser header */}
+                <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3">
+                  <div className="flex gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-white/20" />
+                    <span className="h-2 w-2 rounded-full bg-white/20" />
+                    <span className="h-2 w-2 rounded-full bg-white/20" />
+                  </div>
+
+                  <span className="font-mono text-[8px] text-white/20">
+                    {project.slug}.app
+                  </span>
+                </div>
+
+                {/* Mock UI */}
+                <div className="p-5">
+                  <div className="grid grid-cols-12 gap-3">
+                    <div className="col-span-3 hidden rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 sm:block">
+                      <div className="h-2 w-12 rounded-full bg-white/10" />
+
+                      <div className="mt-6 space-y-2">
+                        <div className="h-2 rounded-full bg-white/[0.06]" />
+                        <div className="h-2 rounded-full bg-white/[0.04]" />
+                        <div className="h-2 rounded-full bg-white/[0.04]" />
+                        <div className="h-2 rounded-full bg-white/[0.04]" />
+                      </div>
+                    </div>
+
+                    <div className="col-span-12 sm:col-span-9">
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="h-16 rounded-lg border border-white/[0.06] bg-white/[0.025]" />
+                        <div className="h-16 rounded-lg border border-white/[0.06] bg-white/[0.025]" />
+                        <div className="h-16 rounded-lg border border-white/[0.06] bg-white/[0.025]" />
                       </div>
 
-                      <span className="font-mono text-[9px] text-white/20">
-                        preview.cairn
-                      </span>
+                      <div className="mt-3 h-32 rounded-lg border border-white/[0.06] bg-white/[0.02]">
+                        <div className="flex h-full items-end gap-2 p-4">
+                          <div className="h-[35%] w-full rounded-t bg-violet-400/20" />
+                          <div className="h-[55%] w-full rounded-t bg-violet-400/30" />
+                          <div className="h-[42%] w-full rounded-t bg-cyan-400/20" />
+                          <div className="h-[75%] w-full rounded-t bg-violet-400/40" />
+                          <div className="h-[60%] w-full rounded-t bg-cyan-400/30" />
+                          <div className="h-[88%] w-full rounded-t bg-violet-400/50" />
+                        </div>
+                      </div>
                     </div>
-
-                    <div className="mt-5 grid grid-cols-3 gap-3">
-                      <div className="col-span-2 h-24 rounded-xl border border-white/10 bg-violet-500/[0.06]" />
-                      <div className="h-24 rounded-xl border border-white/10 bg-cyan-500/[0.05]" />
-                      <div className="h-16 rounded-xl border border-white/10 bg-white/[0.025]" />
-                      <div className="col-span-2 h-16 rounded-xl border border-white/10 bg-white/[0.025]" />
-                    </div>
-
-                    <div className="mt-4 h-20 rounded-xl border border-white/10 bg-white/[0.02]" />
-                  </div>
-
-                  <div className="absolute bottom-7 right-7 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white text-black transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
-                    <ArrowUpRight size={18} />
                   </div>
                 </div>
-              </motion.a>
-            ))}
-          </div>
+              </motion.div>
 
-          <div className="mt-10 flex justify-center">
-            <a
-              href="#contact"
-              className="group flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white"
-            >
-              View all projects
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </a>
-          </div>
-        </div>
-      </section>
+              {/* Floating badge */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-8 right-8 rounded-xl border border-white/10 bg-[#101010]/90 px-4 py-3 shadow-xl backdrop-blur-xl"
+              >
+                <p className="text-[9px] uppercase tracking-widest text-white/25">
+                  Technologies
+                </p>
 
+                <div className="mt-2 flex gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-[9px] text-white/50"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.a>
+      ))}
+    </div>
+
+    {/* All work */}
+    <div className="mt-10 flex justify-center">
+      <a
+        href="/work"
+        className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-white/60 transition-all hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+      >
+        Explore all work
+        <ArrowRight
+          size={16}
+          className="transition-transform group-hover:translate-x-1"
+        />
+      </a>
+    </div>
+  </div>
+</section>
       {/* =========================================================
           PROCESS
       ========================================================= */}
