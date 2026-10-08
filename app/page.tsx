@@ -888,46 +888,78 @@ export default function Home() {
           CTA
       ========================================================= */}
 
-      <section
-        id="contact"
-        className="relative z-10 overflow-hidden py-32 sm:py-40"
-      >
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/[0.10] blur-[140px]" />
+      {/* =========================================================
+    CONTACT / START A PROJECT
+========================================================= */}
 
-        <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-8">
-          <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs text-white/40">
-            <Sparkles size={14} />
-            Have an idea?
+<section
+  id="contact"
+  className="relative z-10 border-b border-white/[0.06] py-28 sm:py-36"
+>
+  <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="grid gap-16 lg:grid-cols-[0.7fr_1.3fr]">
+      {/* Left */}
+      <div className="lg:sticky lg:top-24 lg:h-fit">
+        <div className="mb-5 flex items-center gap-3">
+          <span className="h-px w-8 bg-violet-400" />
+
+          <span className="text-xs uppercase tracking-[0.25em] text-violet-300">
+            Start a project
+          </span>
+        </div>
+
+        <h2 className="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+          Let's build
+          <span className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+            something great.
+          </span>
+        </h2>
+
+        <p className="mt-7 max-w-md text-base leading-7 text-white/40">
+          Have an idea, an existing product, or a problem that needs solving?
+          Tell us about it. We'll figure out the right way forward.
+        </p>
+
+        <div className="mt-10 space-y-5">
+          <div className="flex items-center gap-3 text-sm text-white/40">
+            <Check size={16} className="text-violet-300" />
+            No-obligation initial conversation
           </div>
 
-          <h2 className="text-5xl font-semibold tracking-[-0.05em] sm:text-6xl lg:text-7xl">
-            Let's build
-            <span className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
-              something great.
-            </span>
-          </h2>
+          <div className="flex items-center gap-3 text-sm text-white/40">
+            <Check size={16} className="text-violet-300" />
+            Clear technical direction
+          </div>
 
-          <p className="mx-auto mt-7 max-w-xl text-base leading-7 text-white/40 sm:text-lg">
-            Tell us what you're building, what you're trying to solve, or
-            simply where you want to go. We'll figure out the next step
-            together.
-          </p>
-
-          <div className="mt-10 flex justify-center">
-            <a
-              href="mailto:hello@cairn.dev"
-              className="group flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-black transition-transform hover:scale-[1.02]"
-            >
-              Start a Conversation
-              <ArrowUpRight
-                size={18}
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
+          <div className="flex items-center gap-3 text-sm text-white/40">
+            <Check size={16} className="text-violet-300" />
+            Transparent project communication
           </div>
         </div>
-      </section>
 
+        <div className="mt-12 border-t border-white/[0.07] pt-6">
+          <p className="text-xs text-white/25">
+            Prefer email?
+          </p>
+
+          <a
+            href="mailto:hello@cairn.dev"
+            className="mt-2 inline-block text-sm text-white/60 transition-colors hover:text-white"
+          >
+            hello@cairn.dev
+          </a>
+        </div>
+      </div>
+
+      {/* Form */}
+      <div>
+        <div className="rounded-[28px] border border-white/10 bg-white/[0.025] p-6 sm:p-10">
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       {/* =========================================================
           FOOTER
       ========================================================= */}
