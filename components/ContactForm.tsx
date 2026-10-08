@@ -60,23 +60,39 @@ export default function ContactForm() {
     }));
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleSubmit(
+  event: React.FormEvent<HTMLFormElement>,
+) {
+  event.preventDefault();
 
-    /*
-      Backend/API integration can be added here later.
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
 
-      Example future endpoint:
+    const data = await response.json();
 
-      fetch("/api/contact", {
-        method: "POST",
-        body: JSON.stringify(form),
-      });
-    */
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Failed to submit inquiry.",
+      );
+    }
 
     setSubmitted(true);
-  }
+  } catch (error) {
+    console.error(error);
 
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong.",
+    );
+  }
+}
   if (submitted) {
     return (
       <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] p-10 text-center sm:p-16">
